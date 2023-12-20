@@ -4,7 +4,6 @@ from math import floor
 from scipy.optimize import minimize_scalar
 from itertools import combinations
 from scipy.linalg import inv, det, pinv
-from scipy.stats import multivariate_normal
 
 
 def CARMA_spike_slab_noEM(z, ld, lambda_val=1, Max_Model_Dim=2e5,
@@ -155,7 +154,7 @@ def set_gamma_func_base(S, p):
         S = np.sort(S)
         set_gamma[0] = np.array(list(combinations(S, len(S) - 1)))
         set_gamma[1] = add_function(S_sub, S)
-        xs = np.vstack([add_function(S_sub, row) for row in set_gamma[1]])
+        xs = np.vstack([add_function(S_sub, row) for row in set_gamma[0]])
         set_gamma[2] = xs
 
     return set_gamma
